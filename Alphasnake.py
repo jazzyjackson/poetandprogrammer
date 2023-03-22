@@ -1,3 +1,4 @@
+# pretty good coding, friend
 print('Hello, world!')
 print('What is your name?') #ask for their name
 myName = input()
