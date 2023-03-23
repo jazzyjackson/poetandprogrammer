@@ -7,7 +7,7 @@
 template = """
 Title: Biking and Bagels
 
-One sunny day, {Name} decided to {verb} their {adjective} bike through the {adjective} campus. They whizzed past {plural noun} and {plural noun}, feeling the {adjective} breeze in their hair. 
+One sunny day, {name} decided to {verb} their {adjective} bike through the {adjective} campus. They whizzed past {plural noun} and {plural noun}, feeling the {adjective} breeze in their hair.
 
 Suddenly, a craving for a {adjective} bagel struck them like a {noun}. {Name} made a beeline for the nearest campus {type of building}, where they knew the best bagels were served.
 
@@ -17,6 +17,8 @@ As they approached the counter, the {occupation} asked, "{Question}?" {Name} rep
 """
 
 # define a function to get the words from the user
+
+
 def get_words():
     words = {}
     words['name'] = input("Enter a name: ")
@@ -28,6 +30,25 @@ def get_words():
     words['occupation'] = input("Enter an occupation: ")
     words['question'] = input("Enter a question: ")
     words['flavor'] = input("Enter a flavor: ")
+    return words
+# write a slightly different get_words function that performs a regex on the template to extract the key names and then ask the user for input
+
+
+def get_words():
+    words = {}
+    # use a regex to extract the key names from the template, simple, dumb regex
+    # this will work for this template, but it's not a general solution
+    # it will also fail if the template has any other curly braces in it
+    # first, split the template into lines
+    lines = template.splitlines()
+    # then, loop through the lines
+    for line in lines:
+        # for each line, find all the curly braces
+        matches = re.findall(r'{(.*?)}', line)
+        # then, loop through the matches
+    for match in matches:
+            # for each match, ask the user for input
+            words[match] = input(f"Enter a {match}: ")
     return words
 
 # define a function to upgrade the template to an f-string
